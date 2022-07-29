@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Square from "./components/Square";
 
-function App() {
+export default function App() {
+  const [state, setState] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+  const handleClick = () => {
+    setState([...state, 1]);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        background: "green",
+      }}
+      className="px-3"
+    >
+      <button className="btn btn-danger" onClick={() => handleClick()}>
+        +
+      </button>
+      <div
+        style={{
+          background: "blue",
+          display: "grid",
+          gridTemplateColumns: "repeat(3,1fr)",
+          maxWidth: "1110px",
+          width: "100%",
+          margin: "0 auto",
+          gap: "30px",
+          padding: "20px",
+        }}
+      >
+        {state.map((item, index) => (
+          <Square key={index} />
+        ))}
+      </div>
     </div>
   );
 }
-
-export default App;
